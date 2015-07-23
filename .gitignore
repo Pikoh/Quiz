@@ -29,6 +29,7 @@ node_modules
 .LSOverride
 npm-debug.log
 quiz.sqlite
+.env
 # Thumbnails
 ._*
 
