@@ -5,11 +5,18 @@
   </form>
   <br/>
 
-  <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+  <a href="/quizes/new"><button type="button">Crear pregunta</button></a><p><p>
+
+  <a href="/quizes?cat=Todos">Todos</a>
+  <a href="/quizes?cat=Otro">Otro</a>
+  <a href="/quizes?cat=Humanidades">Humanidades</a>
+  <a href="/quizes?cat=Ocio">Ocio</a>
+  <a href="/quizes?cat=Ciencia">Ciencia</a>
+  <a href="/quizes?cat=Tecnologia">Tecnologia</a>
 
   <table>
   <% var i; for (i=0; i < quizes.length; i++) { %>
-     <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+     <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a> - <%= quizes[i].tema %></td>
      <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
      <td>
         <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
