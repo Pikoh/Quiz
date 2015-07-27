@@ -28,7 +28,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
-    var tiempoExpiracion = 30*1000*1;
+    var tiempoExpiracion = 60*1000*2;
     var hora = new Date().getTime();
     var caducado=false;
     var logueado=false;
