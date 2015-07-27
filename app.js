@@ -27,6 +27,33 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next){
+    var tiempoExpiracion = 30*1000*1;
+    var hora = new Date().getTime();
+    var caducado=false;
+    var logueado=false;
+    if (req.session.user)
+    {
+      logueado=true;
+    }
+
+    if(req.session && req.session.ultimoAcceso) {
+    var tiempoDesde = hora - req.session.ultimoAcceso;
+        if (tiempoExpiracion <= tiempoDesde){
+            delete req.session.user;
+            caducado=true;
+        }
+
+    }
+
+    req.session.ultimoAcceso = hora;
+    if (logueado && caducado)
+    {
+      res.redirect('\login');
+    }
+    next();
+});
+
 // Helpers dinamicos:
 app.use(function(req, res, next) {
 
